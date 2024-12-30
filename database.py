@@ -49,7 +49,9 @@ def edit_student(id,name=None,age=None,information=None):
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
     for parameter,value in zip(['name','age','information'],[name,age,information]):
-        if value:
+        if value and parameter != 'age':
+            cur.execute(f'UPDATE STUDENTS SET {parameter} = "{value}" WHERE rowid = {id}')
+        elif value:
             cur.execute(f'UPDATE STUDENTS SET {parameter} = {value} WHERE rowid = {id}')
     db.commit()
     cur.close()
