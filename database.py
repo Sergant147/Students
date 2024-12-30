@@ -49,5 +49,5 @@ def remove_student(id):
 def add_student(name, age, information):
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
-    cur.execute(f"INSERT INTO STUDENTS (name, age, information) VALUES ('{name}', {age}, '{information}')"")
+    cur.execute(f"INSERT INTO STUDENTS (name, age, information) VALUES ('{name}', {age}, '{information}')")
     cur.close()
