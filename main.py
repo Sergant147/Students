@@ -26,14 +26,14 @@ def clear_table_api() -> str:
 
 
 @app.put('/students/edit/{id}/{name}/{age}/{information}/{none_key}', summary='Изменить студента', tags=['PUT'])
-def edit_student_api(id: int, none_key: str, name: str, age: int, information: str) -> str:
+def edit_student_api(id: int, none_key, name: str, age: int, information: str) -> str:
     try:
         if name == none_key:
-            name = None
+            name = get_student(id)['name']
         if age == none_key:
-            age = None
+            age = get_student(id)['age']
         if information == none_key:
-            information = None
+            information = get_student(id)['information']
         edit_student(id, name, age, information)
     except:
         raise HTTPException(status_code=404, detail='page not found')
@@ -46,6 +46,7 @@ def remove_student_api(id: int):
         remove_student(id)
     except:
         raise HTTPException(status_code=404, detail='page not found')
+    return 'success'
 
 
 @app.post('/students/add/{name}/{age}/{information}/', summary='Добавить студента', tags=['POST'])
