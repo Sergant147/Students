@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sqlite3
 import os
 def get_students():
@@ -34,7 +35,7 @@ name string,
 age integer,
 information string
 )''')
-def edit_student(id,name,age,information):
+def edit_student(id,name=None,age=None,information=None):
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
     for parameter,value in zip(['name','age','information'],[name,age,information]):
