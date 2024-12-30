@@ -9,6 +9,7 @@ def get_students():
     cur.close()
     db.close()
     students = {}
+    rows = [list(row) for row in rows]
     for row in rows:
         id = row[0]
         other = {
