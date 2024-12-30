@@ -18,6 +18,7 @@ def get_students():
             'information': row[3]
         }
         students[id] = other
+    print(students)
     return students
 def get_student(id):
     db = sqlite3.connect('db.sqlite')
