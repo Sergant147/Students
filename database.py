@@ -23,14 +23,15 @@ def get_student(id):
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
     row = cur.execute(f'''SELECT name, age, information, rowid FROM STUDENTS WHERE rowid = {id}''')[0]
-    db.commit()
-    cur.close()
-    db.close()
-    return {
+    res = {
         'name': row[0],
         'age': row[1],
         'information': row[2]
     }
+    db.commit()
+    cur.close()
+    db.close()
+    return res
 def clear_table():
     os.remove('db.sqlite')
     db = sqlite3.connect('db.sqlite')
