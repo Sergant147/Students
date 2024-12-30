@@ -50,7 +50,7 @@ def edit_student(id,name=None,age=None,information=None):
     cur = db.cursor()
     for parameter,value in zip(['name','age','information'],[name,age,information]):
         if value:
-            cur.execute(f'UPDATE STUDENTS SET {parameter} WHERE rowid = {id}')
+            cur.execute(f'UPDATE STUDENTS SET {parameter} = {value} WHERE rowid = {id}')
     db.commit()
     cur.close()
     db.close()
