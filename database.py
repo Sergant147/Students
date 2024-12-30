@@ -22,7 +22,8 @@ def get_students():
 def get_student(id):
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
-    row = cur.execute(f'''SELECT name, age, information, rowid FROM STUDENTS WHERE rowid = {id}''')[0]
+    cur.execute(f'''SELECT name, age, information, rowid FROM STUDENTS WHERE rowid = {id}''')
+    row = cur.fetchall()[0]
     res = {
         'name': row[0],
         'age': row[1],
