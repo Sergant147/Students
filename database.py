@@ -5,9 +5,6 @@ def get_students():
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
     rows = cur.execute('''SELECT rowid, name, age, information FROM STUDENTS''')
-    db.commit()
-    cur.close()
-    db.close()
     students = {}
     rows = [list(row) for row in rows]
     for row in rows:
@@ -18,7 +15,9 @@ def get_students():
             'information': row[3]
         }
         students[id] = other
-    print(students)
+    db.commit()
+    cur.close()
+    db.close()
     return students
 def get_student(id):
     db = sqlite3.connect('db.sqlite')
