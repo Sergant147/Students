@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import sqlite3
 import os
+
+
 def get_students():
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
@@ -19,6 +21,8 @@ def get_students():
     cur.close()
     db.close()
     return students
+
+
 def get_student(id):
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
@@ -33,6 +37,8 @@ def get_student(id):
     cur.close()
     db.close()
     return res
+
+
 def clear_table():
     os.remove('db.sqlite')
     db = sqlite3.connect('db.sqlite')
@@ -45,10 +51,12 @@ information string
     db.commit()
     cur.close()
     db.close()
-def edit_student(id,name=None,age=None,information=None):
+
+
+def edit_student(id, name=None, age=None, information=None):
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
-    for parameter,value in zip(['name','age','information'],[name,age,information]):
+    for parameter, value in zip(['name', 'age', 'information'], [name, age, information]):
         if value and parameter != 'age':
             cur.execute(f'UPDATE STUDENTS SET {parameter} = "{value}" WHERE rowid = {id}')
         elif value:
@@ -56,6 +64,8 @@ def edit_student(id,name=None,age=None,information=None):
     db.commit()
     cur.close()
     db.close()
+
+
 def remove_student(id):
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
@@ -63,6 +73,8 @@ def remove_student(id):
     db.commit()
     cur.close()
     db.close()
+
+
 def add_student(name, age, information):
     db = sqlite3.connect('db.sqlite')
     cur = db.cursor()
